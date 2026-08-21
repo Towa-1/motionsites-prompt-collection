@@ -21,8 +21,9 @@ export function PromptCard({ item, onPreview }: { item: CatalogItem; onPreview: 
       <button
         type="button"
         onClick={() => onPreview(item)}
-        className="relative z-10 block w-full text-left"
+        className="relative z-10 block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#262626] rounded-t-[16px] rounded-b-[10px]"
         aria-label={`Preview ${item.title}`}
+        title={`Preview ${item.title}`}
       >
         <MediaFrame item={item} className="aspect-[1.58/1] w-full rounded-b-[10px] rounded-t-[16px]" compact />
       </button>
@@ -51,8 +52,9 @@ export function PromptCard({ item, onPreview }: { item: CatalogItem; onPreview: 
           <button
             type="button"
             onClick={() => onPreview(item)}
-            className="grid h-10 w-10 place-items-center rounded-xl bg-[#303030] text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white"
+            className="grid h-10 w-10 place-items-center rounded-xl bg-[#303030] text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#262626]"
             aria-label={`Open preview for ${item.title}`}
+            title={`Open preview for ${item.title}`}
           >
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
           </button>
