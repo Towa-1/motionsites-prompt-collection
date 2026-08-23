@@ -289,7 +289,10 @@ function CaseStudiesPreview({ content, compact = false }: { content: LivePreview
               <span key={block} className="bg-black/70" style={{ transitionDelay: `${block * 12}ms` }} />
             ))}
           </div>
-          <button className="absolute right-4 top-4 z-10 grid h-8 w-8 place-items-center border border-white/30 text-white">
+          <button
+            className="absolute right-4 top-4 z-10 grid h-8 w-8 place-items-center border border-white/30 text-white"
+            aria-label="Expand case study"
+          >
             <Plus className="h-4 w-4" aria-hidden="true" />
           </button>
           <div className="absolute bottom-0 left-0 z-20 max-w-[76%] bg-white px-4 pb-3 pt-2">
@@ -382,7 +385,10 @@ function SignupPreview({ content }: { content: LivePreviewContent }) {
       <p className="text-3xl font-black tracking-[-0.04em]">Join {content.brand}</p>
       <div className="mt-6 flex rounded-full border border-white/12 bg-white/8 p-2">
         <span className="flex-1 px-4 py-3 text-white/40">Enter your email</span>
-        <button className="rounded-full bg-white px-5 text-sm font-bold text-black">
+        <button
+          className="rounded-full bg-white px-5 text-sm font-bold text-black"
+          aria-label="Submit email"
+        >
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>

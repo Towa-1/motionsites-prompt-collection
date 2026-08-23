@@ -38,7 +38,14 @@ export function PromptCard({ item, onPreview }: { item: CatalogItem; onPreview: 
         <div className="flex items-center justify-between gap-2">
           <div className="flex gap-2">
             <CopyButton text={item.prompt} label="Copy" />
-            <DownloadButton text={item.prompt} filename={`${item.slug}.md`} label="" />
+            <DownloadButton
+              text={item.prompt}
+              filename={`${item.slug}.md`}
+              label=""
+              downloadedLabel=""
+              aria-label="Download prompt"
+              title="Download prompt"
+            />
           </div>
           {livePreview ? (
             <Link
