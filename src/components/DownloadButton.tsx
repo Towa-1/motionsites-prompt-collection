@@ -1,19 +1,22 @@
 import { Download, Check } from "lucide-react";
 import { useState } from "react";
 
-export function DownloadButton({
-  text,
-  filename = "prompt.md",
-  label = "Download",
-  downloadedLabel = "Downloaded",
-  variant = "default",
-}: {
+export function DownloadButton(props: {
   text: string;
   filename?: string;
   label?: string;
   downloadedLabel?: string;
   variant?: "default" | "gradient";
+  "aria-label"?: string;
+  title?: string;
 }) {
+  const {
+    text,
+    filename = "prompt.md",
+    label = "Download",
+    downloadedLabel = "Downloaded",
+    variant = "default",
+  } = props;
   const [downloaded, setDownloaded] = useState(false);
 
   function handleDownload() {
@@ -34,6 +37,8 @@ export function DownloadButton({
   return (
     <button
       type="button"
+      aria-label={props["aria-label"]}
+      title={props.title}
       onClick={handleDownload}
       className={
         variant === "gradient"

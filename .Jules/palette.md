@@ -1,0 +1,3 @@
+## 2024-05-18 - Icon-Only Button Text Changes and Custom Filter Chips
+**Learning:** When adding "success" states to icon-only buttons (like changing a "Download" icon to a "Downloaded" checkmark without text), if the text is dynamically changing from empty to a string, it causes unexpected layout shifts and expanding button widths. Furthermore, custom filter chips that look like buttons but act like toggles or tabs must use `aria-pressed` to correctly communicate their active state to screen readers.
+**Action:** When updating icon-only buttons, always ensure the text change doesn't cause layout shift by keeping it empty or matching lengths. Always add `aria-pressed` to toggle-like filter buttons.
