@@ -1,0 +1,3 @@
+## 2023-10-27 - Preventing Layout Shift on Icon-Only Feedback Buttons
+**Learning:** When using an icon-only button that updates its label on success (e.g., showing a "Downloaded" label after clicking an icon-only download button), it causes an unexpected and jarring layout shift as the button suddenly expands to fit the new text. Additionally, icon-only buttons need an explicit `aria-label` or `title` for screen readers.
+**Action:** When configuring icon-only buttons that have dynamic success states, explicitly pass empty strings for the success labels (e.g., `downloadedLabel=""`) to prevent layout shifts. Always provide a `title` or `aria-label` prop to ensure accessibility and tooltips are present.
