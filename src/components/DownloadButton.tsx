@@ -7,12 +7,14 @@ export function DownloadButton({
   label = "Download",
   downloadedLabel = "Downloaded",
   variant = "default",
+  title,
 }: {
   text: string;
   filename?: string;
   label?: string;
   downloadedLabel?: string;
   variant?: "default" | "gradient";
+  title?: string;
 }) {
   const [downloaded, setDownloaded] = useState(false);
 
@@ -35,10 +37,12 @@ export function DownloadButton({
     <button
       type="button"
       onClick={handleDownload}
+      title={title || label || "Download"}
+      aria-label={title || label || "Download"}
       className={
         variant === "gradient"
-          ? "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-cta-gradient px-5 text-[12px] font-black uppercase tracking-[0.12em] text-[#171717] shadow-[0_16px_45px_rgba(219,234,254,0.14)] transition-transform hover:-translate-y-0.5"
-          : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white"
+          ? "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-cta-gradient px-5 text-[12px] font-black uppercase tracking-[0.12em] text-[#171717] shadow-[0_16px_45px_rgba(219,234,254,0.14)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+          : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
       }
       aria-live="polite"
     >
