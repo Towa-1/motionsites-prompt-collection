@@ -21,19 +21,24 @@ export function CopyButton({
     window.setTimeout(() => setCopied(false), 1400);
   }
 
+  const isIconOnly = !label;
+  const accessibleLabel = copied ? copiedLabel : (label || "Copy");
+
   return (
     <button
       type="button"
       onClick={handleCopy}
       className={
         variant === "gradient"
-          ? "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-cta-gradient px-5 text-[12px] font-black uppercase tracking-[0.12em] text-[#171717] shadow-[0_16px_45px_rgba(219,234,254,0.14)] transition-transform hover:-translate-y-0.5"
-          : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white"
+          ? "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-cta-gradient px-5 text-[12px] font-black uppercase tracking-[0.12em] text-[#171717] shadow-[0_16px_45px_rgba(219,234,254,0.14)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+          : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
       }
       aria-live="polite"
+      aria-label={isIconOnly ? accessibleLabel : undefined}
+      title={isIconOnly ? accessibleLabel : undefined}
     >
       {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
-      {copied ? copiedLabel : label}
+      {!isIconOnly && (copied ? copiedLabel : label)}
     </button>
   );
 }
