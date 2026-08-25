@@ -1,0 +1,3 @@
+## 2025-02-27 - Icon-Only Button Accessibility Pattern
+**Learning:** When reusable UI buttons (like Copy/Download) can be configured without a text label, they often silently drop their accessibility semantics, leaving icon-only buttons with no screen reader context or mouse tooltip.
+**Action:** Always implement a dynamic fallback mechanism that assigns `aria-label` and `title` attributes when the text label prop is falsy, ensuring all button variants remain fully accessible regardless of how they are composed.
