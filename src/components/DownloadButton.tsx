@@ -37,10 +37,12 @@ export function DownloadButton({
       onClick={handleDownload}
       className={
         variant === "gradient"
-          ? "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-cta-gradient px-5 text-[12px] font-black uppercase tracking-[0.12em] text-[#171717] shadow-[0_16px_45px_rgba(219,234,254,0.14)] transition-transform hover:-translate-y-0.5"
-          : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white"
+          ? "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-cta-gradient px-5 text-[12px] font-black uppercase tracking-[0.12em] text-[#171717] shadow-[0_16px_45px_rgba(219,234,254,0.14)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/50"
+          : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
       }
       aria-live="polite"
+      aria-label={label || "Download"}
+      title={label || "Download"}
     >
       {downloaded ? <Check className="h-4 w-4" aria-hidden="true" /> : <Download className="h-4 w-4" aria-hidden="true" />}
       {downloaded ? downloadedLabel : label}
