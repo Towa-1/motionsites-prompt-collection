@@ -80,6 +80,7 @@ export function SearchPage() {
                 setQuery(chip.value);
                 setPage(1);
               }}
+              aria-pressed={query === chip.value}
               className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
                 query === chip.value
                   ? "bg-white text-black border-white shadow-md scale-105"
