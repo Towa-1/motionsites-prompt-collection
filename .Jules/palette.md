@@ -1,0 +1,3 @@
+## 2024-03-24 - Accessibility for Filter Buttons
+**Learning:** Adding `aria-pressed` to interactive elements that serve as filter toggles helps screen reader users understand the currently active selection, avoiding ambiguity compared to purely visual CSS changes.
+**Action:** Always add `aria-pressed` or `aria-current` (depending on whether it's a toggle button or navigation link) to filter components when updating or adding them to UI collections.
