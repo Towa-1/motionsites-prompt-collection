@@ -51,8 +51,9 @@ export function PromptCard({ item, onPreview }: { item: CatalogItem; onPreview: 
           <button
             type="button"
             onClick={() => onPreview(item)}
-            className="grid h-10 w-10 place-items-center rounded-xl bg-[#303030] text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white"
+            className="grid h-10 w-10 place-items-center rounded-xl bg-[#303030] text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
             aria-label={`Open preview for ${item.title}`}
+            title={`Open preview for ${item.title}`}
           >
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
           </button>
