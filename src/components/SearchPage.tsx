@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { catalogItems, type CatalogItem } from "../data/prompts.generated";
@@ -49,7 +49,7 @@ export function SearchPage() {
         />
 
         <div className="mb-6 flex justify-center">
-          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
+          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)] focus-within:ring-2 focus-within:ring-white/50">
             <Search className="h-5 w-5 text-white/50" aria-hidden="true" />
             <span className="sr-only">Search prompts</span>
             <input
@@ -61,6 +61,20 @@ export function SearchPage() {
               placeholder="Search by name, keyword, or library (e.g. HorizonX, 21st.dev, Superdesign)..."
               className="w-full border-0 bg-transparent text-base text-white outline-none placeholder:text-white/40"
             />
+            {query && (
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("");
+                  setPage(1);
+                }}
+                className="grid h-6 w-6 place-items-center rounded-full text-white/50 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                aria-label="Clear search"
+                title="Clear search"
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
           </label>
         </div>
 
@@ -91,21 +105,43 @@ export function SearchPage() {
           ))}
         </div>
 
-        <PromptGrid items={visible} onPreview={setSelected} />
+        {visible.length > 0 ? (
+          <>
+            <PromptGrid items={visible} onPreview={setSelected} />
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <PageButton disabled={page === 1} onClick={() => setPage((value) => Math.max(1, value - 1))}>
-            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-            Previous
-          </PageButton>
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-white/58">
-            Page {page} of {pageCount}
-          </span>
-          <PageButton disabled={page === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))}>
-            Next
-            <ChevronRight className="h-4 w-4" aria-hidden="true" />
-          </PageButton>
-        </div>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <PageButton disabled={page === 1} onClick={() => setPage((value) => Math.max(1, value - 1))}>
+                <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                Previous
+              </PageButton>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-white/58">
+                Page {page} of {pageCount}
+              </span>
+              <PageButton disabled={page === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))}>
+                Next
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </PageButton>
+            </div>
+          </>
+        ) : (
+          <div className="flex min-h-[300px] flex-col items-center justify-center rounded-[20px] border border-white/10 bg-white/[0.02] p-8 text-center">
+            <Search className="mb-4 h-12 w-12 text-white/20" aria-hidden="true" />
+            <h3 className="mb-2 text-xl font-bold text-white">No prompts found</h3>
+            <p className="max-w-md text-sm text-white/60">
+              We couldn't find any prompts matching "{query}". Try adjusting your search terms or exploring our popular categories.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                setPage(1);
+              }}
+              className="mt-6 rounded-full bg-white/10 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+            >
+              Clear search
+            </button>
+          </div>
+        )}
       </section>
       <PromptModal item={selected} onClose={() => setSelected(null)} />
     </>
