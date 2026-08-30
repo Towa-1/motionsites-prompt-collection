@@ -76,10 +76,11 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
 
           <button
-            className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 lg:hidden"
             type="button"
             onClick={() => setMenuOpen(true)}
             aria-label="Open navigation"
+            title="Open navigation"
           >
             <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -91,10 +92,11 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="page-shell flex h-20 items-center justify-between">
             <span className="text-xl font-black lowercase tracking-[-0.05em]">motionsites</span>
             <button
-              className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
               type="button"
               onClick={() => setMenuOpen(false)}
               aria-label="Close navigation"
+              title="Close navigation"
             >
               <X className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -123,8 +125,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="relative w-full max-w-lg rounded-2xl border border-amber-500/40 bg-[#161412] p-6 shadow-2xl text-white">
             <button
               onClick={dismissModal}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-1"
+              className="absolute top-4 right-4 rounded-full p-1 text-gray-400 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
               aria-label="Close modal"
+              title="Close modal"
             >
               <X className="size-5" />
             </button>
@@ -200,13 +203,13 @@ export function AppShell({ children }: { children: ReactNode }) {
             <div className="flex items-center gap-3 shrink-0">
               <NavLink
                 to="/search"
-                className="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition-all shadow-md"
+                className="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               >
                 Search Prompts
               </NavLink>
               <button
                 onClick={() => setShowBottomBanner(false)}
-                className="p-1 rounded-lg text-gray-400 hover:text-white transition-colors"
+                className="p-1 rounded-lg text-gray-400 hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 title="Dismiss Banner"
                 aria-label="Dismiss Notice Banner"
               >
