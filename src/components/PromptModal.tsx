@@ -37,8 +37,9 @@ export function PromptModal({ item, onClose }: { item: CatalogItem | null; onClo
           <button
             type="button"
             onClick={onClose}
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/18 bg-white/[0.04] text-white transition-colors hover:bg-white/10 sm:h-12 sm:w-12"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/18 bg-white/[0.04] text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 sm:h-12 sm:w-12"
             aria-label="Close preview"
+            title="Close preview"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
