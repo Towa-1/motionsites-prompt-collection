@@ -49,7 +49,7 @@ export function SearchPage() {
         />
 
         <div className="mb-6 flex justify-center">
-          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
+          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)] transition-shadow focus-within:ring-2 focus-within:ring-white/50">
             <Search className="h-5 w-5 text-white/50" aria-hidden="true" />
             <span className="sr-only">Search prompts</span>
             <input
@@ -80,7 +80,8 @@ export function SearchPage() {
                 setQuery(chip.value);
                 setPage(1);
               }}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
+              aria-pressed={query === chip.value}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${
                 query === chip.value
                   ? "bg-white text-black border-white shadow-md scale-105"
                   : "bg-white/5 text-gray-300 border-white/10 hover:border-white/30 hover:bg-white/10"
@@ -126,7 +127,7 @@ function PageButton({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className="inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 text-[12px] font-black uppercase tracking-[0.12em] text-white disabled:cursor-not-allowed disabled:opacity-35"
+      className="inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 text-[12px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 disabled:cursor-not-allowed disabled:opacity-35"
     >
       {children}
     </button>
