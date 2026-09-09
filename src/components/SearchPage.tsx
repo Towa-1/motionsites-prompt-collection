@@ -49,7 +49,7 @@ export function SearchPage() {
         />
 
         <div className="mb-6 flex justify-center">
-          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
+          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)] focus-within:ring-2 focus-within:ring-white/50 transition-shadow">
             <Search className="h-5 w-5 text-white/50" aria-hidden="true" />
             <span className="sr-only">Search prompts</span>
             <input
@@ -91,21 +91,44 @@ export function SearchPage() {
           ))}
         </div>
 
-        <PromptGrid items={visible} onPreview={setSelected} />
+        {filtered.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <div className="mb-4 rounded-full bg-white/5 p-4">
+              <Search className="h-8 w-8 text-white/40" aria-hidden="true" />
+            </div>
+            <h3 className="text-xl font-bold text-white">No matching prompts found</h3>
+            <p className="mt-2 text-sm text-white/60 max-w-md">
+              We couldn't find any prompts matching "{query}". Try adjusting your search terms or browsing all prompts.
+            </p>
+            <button
+              onClick={() => {
+                setQuery("");
+                setPage(1);
+              }}
+              className="mt-6 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+            >
+              Clear Search
+            </button>
+          </div>
+        ) : (
+          <PromptGrid items={visible} onPreview={setSelected} />
+        )}
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <PageButton disabled={page === 1} onClick={() => setPage((value) => Math.max(1, value - 1))}>
-            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-            Previous
-          </PageButton>
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-white/58">
-            Page {page} of {pageCount}
-          </span>
-          <PageButton disabled={page === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))}>
-            Next
-            <ChevronRight className="h-4 w-4" aria-hidden="true" />
-          </PageButton>
-        </div>
+        {filtered.length > 0 && (
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <PageButton disabled={page === 1} onClick={() => setPage((value) => Math.max(1, value - 1))}>
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+              Previous
+            </PageButton>
+            <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-white/58">
+              Page {page} of {pageCount}
+            </span>
+            <PageButton disabled={page === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))}>
+              Next
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            </PageButton>
+          </div>
+        )}
       </section>
       <PromptModal item={selected} onClose={() => setSelected(null)} />
     </>

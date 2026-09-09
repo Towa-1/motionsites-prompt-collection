@@ -76,10 +76,11 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
 
           <button
-            className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
             type="button"
             onClick={() => setMenuOpen(true)}
             aria-label="Open navigation"
+            title="Open navigation"
           >
             <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -91,10 +92,11 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="page-shell flex h-20 items-center justify-between">
             <span className="text-xl font-black lowercase tracking-[-0.05em]">motionsites</span>
             <button
-              className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
               type="button"
               onClick={() => setMenuOpen(false)}
               aria-label="Close navigation"
+              title="Close navigation"
             >
               <X className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -206,7 +208,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               </NavLink>
               <button
                 onClick={() => setShowBottomBanner(false)}
-                className="p-1 rounded-lg text-gray-400 hover:text-white transition-colors"
+                className="p-1 rounded-lg text-gray-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 title="Dismiss Banner"
                 aria-label="Dismiss Notice Banner"
               >
