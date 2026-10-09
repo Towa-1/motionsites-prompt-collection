@@ -1,3 +1,6 @@
 ## 2026-08-26 - Icon Button Accessibility and Tooltips
 **Learning:** Icon-only buttons often lack tooltips ('title' attribute) and visible focus states, confusing sighted users trying to discover functionality and keyboard users trying to navigate the page. This is particularly problematic when flexible button components don't fall back to accessible text defaults if their label prop is empty.
 **Action:** When working on icon-only buttons or buttons that can be configured to just show an icon, always ensure 'title' and 'aria-label' attributes are provided with fallback strings, and always add 'focus-visible' utility classes to guarantee focus indication.
+## 2024-12-25 - Improve Search Input and Filter Pill Accessibility
+**Learning:** When creating custom search input fields wrapped inside a `<label>`, the focus state must be delegated to the wrapper using `focus-within:ring` instead of `focus` to ensure the focus state covers the whole simulated input area. Additionally, segmented filter pills require `aria-pressed` to communicate selected states to screen readers properly, not just visual changes.
+**Action:** Always verify `focus-within` styling when inputs are nested inside labels or containers designed to look like the true input box. Remember to include `aria-pressed` attributes for custom pill/tab toggle selections.
