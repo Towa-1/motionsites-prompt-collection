@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { catalogItems, type CatalogItem } from "../data/prompts.generated";
@@ -49,19 +49,33 @@ export function SearchPage() {
         />
 
         <div className="mb-6 flex justify-center">
-          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
-            <Search className="h-5 w-5 text-white/50" aria-hidden="true" />
-            <span className="sr-only">Search prompts</span>
+          <div className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)] focus-within:ring-2 focus-within:ring-white/50 transition-shadow">
+            <Search className="h-5 w-5 shrink-0 text-white/50" aria-hidden="true" />
             <input
               value={query}
               onChange={(event) => {
                 setQuery(event.target.value);
                 setPage(1);
               }}
+              aria-label="Search prompts"
               placeholder="Search by name, keyword, or library (e.g. HorizonX, 21st.dev, Superdesign)..."
               className="w-full border-0 bg-transparent text-base text-white outline-none placeholder:text-white/40"
             />
-          </label>
+            {query && (
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("");
+                  setPage(1);
+                }}
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/50 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 transition-colors"
+                aria-label="Clear search"
+                title="Clear search"
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Dedicated Section Filter Pills */}
@@ -80,7 +94,8 @@ export function SearchPage() {
                 setQuery(chip.value);
                 setPage(1);
               }}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
+              aria-pressed={query === chip.value}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${
                 query === chip.value
                   ? "bg-white text-black border-white shadow-md scale-105"
                   : "bg-white/5 text-gray-300 border-white/10 hover:border-white/30 hover:bg-white/10"
