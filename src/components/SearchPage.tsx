@@ -49,11 +49,11 @@ export function SearchPage() {
         />
 
         <div className="mb-6 flex justify-center">
-          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
+          <div className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)] focus-within:ring-2 focus-within:ring-white/50">
             <Search className="h-5 w-5 text-white/50" aria-hidden="true" />
-            <span className="sr-only">Search prompts</span>
             <input
               value={query}
+              aria-label="Search prompts"
               onChange={(event) => {
                 setQuery(event.target.value);
                 setPage(1);
@@ -61,7 +61,34 @@ export function SearchPage() {
               placeholder="Search by name, keyword, or library (e.g. HorizonX, 21st.dev, Superdesign)..."
               className="w-full border-0 bg-transparent text-base text-white outline-none placeholder:text-white/40"
             />
-          </label>
+            {query && (
+              <button
+                type="button"
+                aria-label="Clear search"
+                title="Clear search"
+                onClick={() => {
+                  setQuery("");
+                  setPage(1);
+                }}
+                className="rounded-full p-1 text-white/50 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Dedicated Section Filter Pills */}
