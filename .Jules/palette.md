@@ -1,3 +1,7 @@
 ## 2026-08-26 - Icon Button Accessibility and Tooltips
 **Learning:** Icon-only buttons often lack tooltips ('title' attribute) and visible focus states, confusing sighted users trying to discover functionality and keyboard users trying to navigate the page. This is particularly problematic when flexible button components don't fall back to accessible text defaults if their label prop is empty.
 **Action:** When working on icon-only buttons or buttons that can be configured to just show an icon, always ensure 'title' and 'aria-label' attributes are provided with fallback strings, and always add 'focus-visible' utility classes to guarantee focus indication.
+
+## 2024-05-18 - Form Input Accessibility with Multiple Interactive Elements
+**Learning:** Wrapping multiple interactive elements (like a text input and a clear button) inside a `<label>` element is invalid HTML and causes screen readers to misbehave because clicking the label can unpredictably activate nested interactive elements, and it creates a confusing DOM hierarchy for accessibility trees.
+**Action:** When adding secondary interactive elements (like clear buttons, submit arrows, or show/hide password toggles) to an input field, always ensure the outer wrapper is a `<div>`, not a `<label>`. The main `<input>` should receive its accessible name via an `aria-label` attribute (or an `aria-labelledby` pointing to a separate label element).
