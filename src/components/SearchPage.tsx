@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { catalogItems, type CatalogItem } from "../data/prompts.generated";
@@ -49,9 +49,8 @@ export function SearchPage() {
         />
 
         <div className="mb-6 flex justify-center">
-          <label className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
+          <div className="flex h-12 w-full max-w-2xl items-center gap-3 rounded-full bg-[#202020] px-5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)] focus-within:ring-2 focus-within:ring-white/50">
             <Search className="h-5 w-5 text-white/50" aria-hidden="true" />
-            <span className="sr-only">Search prompts</span>
             <input
               value={query}
               onChange={(event) => {
@@ -59,9 +58,24 @@ export function SearchPage() {
                 setPage(1);
               }}
               placeholder="Search by name, keyword, or library (e.g. HorizonX, 21st.dev, Superdesign)..."
+              aria-label="Search prompts"
               className="w-full border-0 bg-transparent text-base text-white outline-none placeholder:text-white/40"
             />
-          </label>
+            {query && (
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("");
+                  setPage(1);
+                }}
+                className="grid h-6 w-6 place-items-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                aria-label="Clear search"
+                title="Clear search"
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Dedicated Section Filter Pills */}
